@@ -1,0 +1,70 @@
+{% load static %}
+<link href="{% static 'portfolio/bootstrap.min.css' %}" rel="stylesheet">
+
+
+<header>
+<!--  NAVBAR -->
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">Smile For A Smile</h4>
+          <p class="text-muted">"What if changing the world was just about being here, by showing up no matter how many times we get told we don’t belong..."</p>
+          <p class="text-muted">"Thank you for checking out the website feel free to drop me any questions. This website was made Using, Python + HTML with the Django framework and styling with Bootstrap! Follow me on Github for more python projects."</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="https://www.instagram.com/starkeyfuture/" class="text-white">Instagram</a></li>
+            <li><a href="https://github.com/Y3kr4ts" class="text-white">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <strong>Y3krats</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<br>
+<br>
+
+<h3 class="text-center mb-5">Y3krats has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h3>
+<div class="container marketing">
+    {% for blog in blogs %}
+    <hr class="featurette-divider">
+    <div class="row featurette">
+      <div class="col-md-7">
+          <h2 class="featurette-heading">{{ blog.title }}</h2>
+          <p class="lead">{{ blog.description|striptags|truncatechars:100 }}</p>
+          <h5 class="text-muted">{{ blog.date|date:'M d Y'|upper }}</h5>
+          <a href="{% url 'blog:detail' blog.id %}"><p class="text-muted">Read more.</p></a>
+      </div>
+      <div class="col-md-5">
+          <img src="{% static 'portfolio/test.JPG' %}" width="100%" height="95%">
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+      <br>
+      01001000 01000101 01001100 01010000
+    </p>
+    <p class="mb-1">Created by Y3krats 2022</p>
+  </div>
+</footer>
+
+<script src="{% static 'portfolio/bootstrap.bundle.min.js' %}"></script>
